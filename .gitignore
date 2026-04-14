@@ -1,0 +1,14 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.db
+
+# Angular
+node_modules/
+.angular/
+dist/
+
+# Ambiente virtual Python
+venv/
+.env
