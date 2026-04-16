@@ -10,7 +10,7 @@ app = FastAPI(
     title="Hemolife API",
     description="Blood Bank Management System API",
     version="1.0.0",
-    openapi_url=f"{settings.API_V1_STR}/openapi.json"
+    openapi_url=f"{settings.api_v1_str}/openapi.json"
 )
 
 # Set up CORS
@@ -23,7 +23,7 @@ app.add_middleware(
 )
 
 # Include API router
-app.include_router(api_router, prefix=settings.API_V1_STR)
+app.include_router(api_router, prefix=settings.api_v1_str)
 
 @app.get("/")
 def root():

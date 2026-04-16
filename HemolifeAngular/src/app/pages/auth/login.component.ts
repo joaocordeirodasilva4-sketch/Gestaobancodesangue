@@ -28,7 +28,7 @@ import { ToastService } from '../../core/services/toast.service';
 
         <div class="form-group">
           <label>Email</label>
-          <input type="email" [(ngModel)]="username"
+          <input type="email" [(ngModel)]="email"
                  placeholder="admin@hemolife.com"
                  (keyup.enter)="login()" />
         </div>
@@ -104,20 +104,20 @@ export class LoginComponent {
   private router = inject(Router);
   private toast  = inject(ToastService);
 
-  username = '';
+  email = '';
   password = '';
   loading  = signal(false);
   error    = signal('');
 
   login() {
-    if (!this.username || !this.password) {
+    if (!this.email || !this.password) {
       this.error.set('Preencha e-mail e senha.');
       return;
     }
     this.loading.set(true);
     this.error.set('');
 
-    this.auth.login({ username: this.username, password: this.password }).subscribe({
+    this.auth.login({ email: this.email, password: this.password }).subscribe({
       next: () => {
         this.loading.set(false);
         this.router.navigate(['/dashboard']);

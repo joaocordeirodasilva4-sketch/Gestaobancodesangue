@@ -11,7 +11,7 @@ from app.core.database import get_db
 from app.models.models import User
 from app.schemas.schemas import TokenData
 
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+pwd_context = CryptContext(schemes=["pbkdf2_sha256"], deprecated="auto")
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl=f"{settings.api_v1_str}/auth/login")
 
 def verify_password(plain_password: str, hashed_password: str) -> bool:

@@ -8,8 +8,9 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const auth  = inject(AuthService);
   const toast = inject(ToastService);
   const token = auth.getToken();
+  const isAuthEndpoint = req.url.includes('/auth/login') || req.url.includes('/auth/register');
 
-  const authReq = token
+  const authReq = token && !isAuthEndpoint
     ? req.clone({ setHeaders: { Authorization: `Bearer ${token}` } })
     : req;
 

@@ -1,10 +1,12 @@
 from pydantic import BaseModel, EmailStr
-from typing import Optional, List
+from typing import Optional, List, Generic, TypeVar
 from datetime import datetime
 from app.models.models import (
     TipoSanguineo, StatusDoador, StatusDoacao, StatusSolicitacao,
     StatusEstoque, Urgencia, Genero
 )
+
+T = TypeVar('T')
 
 # Authentication
 class LoginRequest(BaseModel):
@@ -27,8 +29,8 @@ class LoginResponse(Token):
     user: User
 
 # Common
-class PaginatedResponse(BaseModel):
-    data: List
+class PaginatedResponse(BaseModel, Generic[T]):
+    data: List[T]
     total: int
     page: int
     limit: int
